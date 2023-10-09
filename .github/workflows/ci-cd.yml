@@ -46,6 +46,7 @@ jobs:
     
     # needed for trusted-publisher
     permissions:
+      contents: read
       id-token: write
     # Define job steps
     steps:
