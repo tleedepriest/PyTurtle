@@ -45,9 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     
     # neeed for trusted-publisher
-    #permissions:
+    permissions:
     #  contents: read
-    #  id-token: write
+      id-token: write
     # Define job steps
     steps:
       - name: Set up Python
