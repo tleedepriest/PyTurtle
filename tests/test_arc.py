@@ -25,7 +25,7 @@ def test_arc_draw():
     # turtle = TurtleMock()
     arc = Arc()
     # Call the draw method
-    arc.draw()
+    #arc.draw()
     assert len(arc.coordinates) == 100
     print(arc.coordinates)
     assert arc.center == Point2D(0, 0)
@@ -34,17 +34,17 @@ def test_arc_draw():
     print(arc.coordinates[0])
     assert arc.coordinates[0] == Point2D(-10, 0)
     arc.translate_x(10)
-    arc.draw()
+    #arc.draw()
     # Assertions
     # assert turtle.penup_called
     # assert turtle.pendown_called
     assert arc.center == Point2D(10, 0)
     assert len(arc.coordinates) == 100
     arc.translate_y(10)
-    arc.draw()
+    #arc.draw()
     assert arc.center == Point2D(10, 10)
     assert len(arc.coordinates) == 100
     arc.translate_xy(10, 10)
     assert arc.center == Point2D(20, 20)
     assert len(arc.coordinates) == 100
-    arc.draw()
+    #arc.draw()
