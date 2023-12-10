@@ -22,7 +22,7 @@ class Arc(Shape):
 
     def __init__(
         self,
-        turtle: Turtle = Turtle(),
+        turtle: Turtle,
         steps: Step = 100,
         coordinates: Coordinates = {},
         center: Point2D = Point2D(0, 0),

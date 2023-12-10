@@ -13,7 +13,7 @@ class Line(Shape):
 
     def __init__(self,
                  x1, y1, x2, y2,
-                 turtle=Turtle(),
+                 turtle,
                  steps:int=10,
                  coordinates: Coordinates={}):
         super().__init__(turtle, steps, coordinates)
