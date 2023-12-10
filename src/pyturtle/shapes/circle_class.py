@@ -8,22 +8,19 @@ from turtle import Screen, Turtle
 from typing import List, Dict, Any, Tuple, TypedDict
 
 import numpy as np
-
+import numpy.typing as npt
 
 class Point2D(TypedDict):
     """
     point on cartesian coordinate system in 2D space
     """
-
     x: int
     y: int
-
 
 class PolarCircle:
     """
     object that represents Circle
     """
-
     # coordinates map a t_value (evenly spaced radians/steps)...
     # basically some weird fraction of a degree...
     # on the circle to a 2d point on cartesian coordinate system.

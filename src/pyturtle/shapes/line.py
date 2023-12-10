@@ -1,4 +1,6 @@
-import turtle
+from typing import Dict
+from turtle import Turtle
+
 import numpy.typing as npt
 import numpy as np
 from pyturtle.shapes.shape import Shape
@@ -6,8 +8,15 @@ from pyturtle.shapes.point import Point2D
 
 
 class Line(Shape):
-    def __init__(self, x1, y1, x2, y2, **kwargs):
-        super().__init__(**kwargs)
+
+    Coordinates = Dict[int, Point2D]
+
+    def __init__(self,
+                 x1, y1, x2, y2,
+                 turtle=Turtle(),
+                 steps:int=10,
+                 coordinates: Coordinates={}):
+        super().__init__(turtle, steps, coordinates)
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
@@ -81,6 +90,14 @@ class Line(Shape):
         for step, point in enumerate(points):
             self.coordinates[step] = Point2D(point[0], point[1])
 
+    def rotate(self):
+        pass
+
+    def get_slice(self):
+        pass
+
+    def get_random_slice(self):
+        pass
 
 class HorizontalLine(Line):
     """
