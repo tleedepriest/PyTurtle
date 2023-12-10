@@ -2,6 +2,11 @@ import abc
 from turtle import Turtle
 from pyturtle.shapes.point import Point2D
 
+import matplotlib as mpl
+
+if os.environ.get('DISPLAY','') == '':
+   print('no display found. Using non-interactive Agg backend')
+   mpl.use('Agg')
 
 class Shape(metaclass=abc.ABCMeta):
 

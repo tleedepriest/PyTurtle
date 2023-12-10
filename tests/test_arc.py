@@ -3,12 +3,6 @@ import numpy as np
 from pyturtle.shapes.arc import Arc
 from pyturtle.shapes.point import Point2D
 import os
-import matplotlib as mpl
-
-if os.environ.get('DISPLAY','') == '':
-   print('no display found. Using non-interactive Agg backend')
-   mpl.use('Agg')
-import matplotlib.pyplot as plt
 
 class TurtleMock:
     def __init__(self):

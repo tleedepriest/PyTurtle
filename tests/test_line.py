@@ -1,11 +1,6 @@
 import pytest
 from pyturtle.shapes.line import Line
 
-if os.environ.get('DISPLAY','') == '':
-   print('no display found. Using non-interactive Agg backend')
-   mpl.use('Agg')
-import matplotlib.pyplot as plt
-
 class TurtleMock:
     def __init__(self):
         self.penup_called = False
