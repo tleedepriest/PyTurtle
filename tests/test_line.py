@@ -19,16 +19,16 @@ class TurtleMock:
 
 def test_line_draw():
     # Create an instance of Line
-    #turtle = TurtleMock()
+    turtle = TurtleMock()
     #steps = 10
     x1 = 0
     y1 = 0
     x2 = 100
     y2 = 100
-    line = Line(x1=x1, y1=y1, x2=x2, y2=y2)
+    line = Line(turtle=turtle, x1=x1, y1=y1, x2=x2, y2=y2)
 
     # Call the draw method
-    #line.draw()
+    line.draw()
 
     # Assertions
     #assert turtle.penup_called
