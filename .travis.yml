@@ -1,0 +1,8 @@
+services:
+  - xvfb
+
+before_script:
+  - "export DISPLAY=:99.0"
+
+script:
+  - pytest
