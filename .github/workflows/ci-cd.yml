@@ -17,6 +17,15 @@ jobs:
       - name: Check-out repository
         uses: actions/checkout@v3
 
+      - name: Install Xvfb
+        run: sudo apt-get install xvfb
+
+      - name: Set up virtual display
+        run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+      - name: Export DISPLAY variable
+        run: export DISPLAY=:99
+
       - name: Install poetry
         uses: snok/install-poetry@v1
 
@@ -24,7 +33,7 @@ jobs:
         run: poetry install
 
       - name: Test with pytest
-        run: poetry run pytest tests/ --cov=pyturtle --cov-report=xml
+        run: xvfb-run -a -s "-screen 0 1024x768x24" poetry run pytest tests/ --cov=pyturtle --cov-report=xml
 
       - name: Use Codecov to track coverage
         uses: codecov/codecov-action@v3
