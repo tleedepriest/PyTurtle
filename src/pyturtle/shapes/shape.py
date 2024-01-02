@@ -7,13 +7,15 @@ class Shape(metaclass=abc.ABCMeta):
 
     def __init__(
         self,
-        turtle: Turtle,
-        steps: int,
-        coordinates = {},
+        turtle = None,
+        steps = None,
+        coordinates = None,
     ):
-        self.turtle = turtle
-        self.steps = steps  # step = len(coordinates)
-        self.coordinates = coordinates  # key will depend on shape.
+        self.turtle = Turtle() if turtle is None else turtle
+        #step = len(coordinates)
+        self.steps = 10 if steps is None else steps
+        # key will depend on shape.
+        self.coordinates = {} if coordinates is None else coordinates
 
     @abc.abstractmethod
     def draw(self):

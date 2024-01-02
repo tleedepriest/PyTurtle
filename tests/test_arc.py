@@ -20,17 +20,16 @@ class TurtleMock:
 
 
 def test_arc_draw():
+    # from turtle import Turtle
     # Create an instance of Line
     turtle = TurtleMock()
     arc = Arc(turtle=turtle)
     # Call the draw method
     arc.draw()
     assert len(arc.coordinates) == 100
-    print(arc.coordinates)
     assert arc.center == Point2D(0, 0)
     assert arc.coordinates[0] == Point2D(10, 0)
     arc.rotate(np.pi)
-    print(arc.coordinates[0])
     assert arc.coordinates[0] == Point2D(-10, 0)
     arc.translate_x(10)
     arc.draw()
@@ -47,3 +46,5 @@ def test_arc_draw():
     assert arc.center == Point2D(20, 20)
     assert len(arc.coordinates) == 100
     arc.draw()
+    new_arc = Arc()
+    assert new_arc.center == Point2D(0, 0)

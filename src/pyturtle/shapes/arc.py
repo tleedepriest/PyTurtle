@@ -16,25 +16,30 @@ class Arc(Shape):
     # coordinates map a t_value (evenly spaced radians/steps)...
     # basically some weird fraction of a degree...
     # on the circle to a 2d point on cartesian coordinate system.
-    Step = int
-    Radian = float
-    Coordinates = Dict[T, Point2D]
+    #Step = int
+    #Radian = float
+    #Coordinates = Dict[T, Point2D]
 
     def __init__(
         self,
-        turtle: Turtle,
-        steps: Step = 100,
-        coordinates: Coordinates = {},
-        center: Point2D = Point2D(0, 0),
+        turtle=None,
+        #steps: Step = 100,
+        steps=100,
+        #coordinates: Coordinates = {},
+        coordinates=None,
+        #center: Point2D = Point2D(0, 0),
+        center=None,
         radius: float = 10.0,
-        theta_start: Radian = 0,
-        theta_range: Radian = ((2 * np.pi) / 8),
-        **kwargs
+        #theta_start: Radian = 0,
+        theta_start=0,
+        theta_range=((2*np.pi)/8)
+        #theta_range: Radian = ((2 * np.pi) / 8),
+        #**kwargs
     ):
         super().__init__(turtle, steps, coordinates)
             #turtle, steps, **kwargs)
             #turtle, steps, color, coordinates)
-        self.center = center
+        self.center = Point2D(0, 0) if center is None else center
         self.radius = radius
         self.theta_start = theta_start
         self.theta_range = theta_range
