@@ -87,7 +87,7 @@ class Arc(Shape):
         full_circle_lin_split = np.linspace(
             start=self.theta_start,
             # self.theta_start,
-            stop=self.theta_range,
+            stop=2*np.pi,
             # self.theta_range,
             num=self.steps,
         )
