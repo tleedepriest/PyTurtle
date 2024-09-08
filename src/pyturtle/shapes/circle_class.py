@@ -55,7 +55,7 @@ class PolarCircle:
         self.theta_start = theta_start
         self.theta_range = theta_range
         self.center = center
-        self.coordinates: Coordinates = {}
+        self.coordinates = {}
         self.rotation = 0
         self.amplitude = amplitude
         self.wavelengths = wavelengths
