@@ -17,8 +17,10 @@ class TurtleMock:
 
     def goto(self, x, y):
         self.goto_called_with.append((x, y))
+
 def test_circle_draw():
     turtle = TurtleMock()
-    circle = Circle(turtle=turtle)
-    circle.draw()
+    circle = Circle()
+    circle.set_coordinates()
+    circle.draw(turtle_instance=turtle)
 
