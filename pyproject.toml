@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyturtle"
-version = "0.1.6"
+version = "0.1.7"
 description = "A package to generate coordinates of shapes to easily draw using the Turtle package!"
 authors = ["Travis DePriest"]
 license = "MIT"
