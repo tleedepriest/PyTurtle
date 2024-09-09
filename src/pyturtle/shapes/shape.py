@@ -6,12 +6,6 @@ from pyturtle.shapes.point import Point2D
 
 getcontext().prec = 2
 
-class Shape:
-    def __init__(self, num_coordinates):
-        self.coordinates = []  # Initialize with an empty list of coordinates
-        self.num_coordinates = num_coordinates  # Store the number of coordinates
-
-
 class Shape(metaclass=abc.ABCMeta):
 
     def __init__(self, num_coordinates):
