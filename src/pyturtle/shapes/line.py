@@ -28,7 +28,7 @@ class Line(Shape):
         y = mx+b
         """
         return self.start.y - self.get_slope() * self.start.x
-    
+
     def get_length(self):
         """Calculate the length of the line segment."""
         return sqrt((self.end.x - self.start.x) ** 2 + (self.end.y - self.start.y) ** 2)
@@ -39,7 +39,7 @@ class Line(Shape):
         if self.num_coordinates <= 2:
             self.coordinates = [self.start, self.end]  # At least one point
             return
-        
+
 
         step_x = (self.end.x - self.start.x) / (self.num_coordinates - 1)
         step_y = (self.end.y - self.start.y) / (self.num_coordinates - 1)
@@ -152,7 +152,7 @@ class HorizontalLineStack:
 
     def get_lines(self):
         return self.lines
-    
+
     def pop_line(self):
         return self.lines.pop()
 
@@ -163,20 +163,19 @@ class VerticalLineStack:
     a linked list
     """
 
-    def __init__(self, turtle):
+    def __init__(self):
         self.lines = []
-        self.turtle = turtle
 
     def is_empty(self):
         return self.lines == []
 
-    def add(self, start, lenght, num_coordinates):
-        new_line = VerticalLine(start, lenght, num_coordinates)
+    def add(self, start, length, num_coordinates):
+        new_line = VerticalLine(start, length, num_coordinates)
         self.lines.append(new_line)
 
-    def draw(self):
+    def draw(self, turtle_instance):
         for line in self.lines:
-            line.draw()
+            line.draw(turtle_instance)
 
     def clear(self):
         self.lines = []

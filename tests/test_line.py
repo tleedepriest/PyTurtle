@@ -33,7 +33,7 @@ def test_line():
     line.translate_x(10)
     assert line.start.x == 10
     assert line.start.y == 0
-    
+
     assert line.end.x == 110
     assert line.end.y == 100
 

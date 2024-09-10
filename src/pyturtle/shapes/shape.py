@@ -1,17 +1,14 @@
 import abc
 import os
 from typing import List
-from decimal import Decimal, getcontext
 from pyturtle.shapes.point import Point2D
-
-getcontext().prec = 2
 
 class Shape(metaclass=abc.ABCMeta):
 
     def __init__(self, num_coordinates):
         self.coordinates: List[Point2D] = []
         self.num_coordinates: int = num_coordinates
-    
+
     @abc.abstractmethod
     def set_coordinates(self):
         """This can be overridden by subclasses for specific behavior."""
