@@ -3,6 +3,7 @@ test circle class
 """
 from pyturtle.shapes.circle import Circle
 
+
 class TurtleMock:
     def __init__(self):
         self.penup_called = False
@@ -18,11 +19,13 @@ class TurtleMock:
     def goto(self, x, y):
         self.goto_called_with.append((x, y))
 
+
 def test_circle_draw():
     turtle = TurtleMock()
     circle = Circle()
     circle.set_coordinates()
     circle.draw(turtle_instance=turtle)
+
 
 def test_circle_translate_x():
     one = Circle()
@@ -34,6 +37,7 @@ def test_circle_translate_x():
     for i in range(len(coords)):
         assert coords[i].y == coords_shifted[i].y
         assert coords[i].x != coords_shifted[i].x
+
 
 def test_circle_translate_y():
     one = Circle()

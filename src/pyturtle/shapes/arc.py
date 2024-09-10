@@ -7,7 +7,6 @@ from pyturtle.shapes.point import Point2D
 
 
 class Arc(Shape):
-
     def __init__(
         self,
         num_coordinates=100,
@@ -28,11 +27,26 @@ class Arc(Shape):
         angle_increment = arc_length / (self.num_coordinates - 1)
 
         self.coordinates = [
-            Point2D(round(self.center.x + self.radius * cos(radians(self.start_angle + angle_increment*i)), 2),
-                       round(self.center.y + self.radius * sin(radians(self.start_angle+angle_increment*i)), 2)) for i in range(self.num_coordinates)
+            Point2D(
+                round(
+                    self.center.x
+                    + self.radius
+                    * cos(radians(self.start_angle + angle_increment * i)),
+                    2,
+                ),
+                round(
+                    self.center.y
+                    + self.radius
+                    * sin(radians(self.start_angle + angle_increment * i)),
+                    2,
+                ),
+            )
+            for i in range(self.num_coordinates)
         ]
+
     def get_slice():
         pass
+
     # def get_slice(self, step_num_one, step_num_two):
     #     """
 
@@ -43,11 +57,11 @@ class Arc(Shape):
     #         if t_in_arc_range:
     #             slice_coordinates[t] =
     #             for step, t in enumerate(self.coordinates.items())
-        #         arc_coordinates[t] = {
-        #             "x": self.coordinates[t]["x"],
-        #             "y": self.coordinates[t]["y"],
-        #         }
-        # return arc_coordinates
+    #         arc_coordinates[t] = {
+    #             "x": self.coordinates[t]["x"],
+    #             "y": self.coordinates[t]["y"],
+    #         }
+    # return arc_coordinates
 
     def get_random_slice(self):
         pass
@@ -88,9 +102,3 @@ class Arc(Shape):
     def set_radius(self, r):
         self.radius = r
         self.set_coordinates()
-
-
-
-
-
-

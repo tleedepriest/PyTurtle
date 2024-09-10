@@ -6,17 +6,17 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"pyturtle"
-copyright = u"2023, Travis DePriest"
-author = u"Travis DePriest"
+project = "pyturtle"
+copyright = "2023, Travis DePriest"
+author = "Travis DePriest"
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-#extensions = []
-#autoapi_dirs = ["../src"]
+# extensions = []
+# autoapi_dirs = ["../src"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
