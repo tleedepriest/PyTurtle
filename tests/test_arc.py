@@ -3,6 +3,7 @@ import numpy as np
 from pyturtle.shapes.arc import Arc
 from pyturtle.shapes.point import Point2D
 
+
 class TurtleMock:
     def __init__(self):
         self.penup_called = False
@@ -22,7 +23,7 @@ class TurtleMock:
 def test_arc():
     # from turtle import Turtle
     # Create an instance of Line
-    #turtle = TurtleMock()
+    # turtle = TurtleMock()
     arc = Arc()
     # Call the draw method
     assert arc.radius == 10
@@ -30,7 +31,7 @@ def test_arc():
     arc.set_coordinates()
     assert len(arc.coordinates) == 100
     assert arc.center == Point2D(0, 0)
-    assert arc.coordinates[0] == Point2D(10, 0) # default radius 10
+    assert arc.coordinates[0] == Point2D(10, 0)  # default radius 10
     arc.translate_x(10)
     assert arc.center == Point2D(10, 0)
     arc.translate_y(10)

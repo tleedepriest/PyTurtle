@@ -1,9 +1,5 @@
 from typing import Dict, Optional, Tuple
-from math import cos, sin, pi
-import numpy.typing as npt
-import numpy as np
-
-from decimal import Decimal
+from math import cos, sin, pi, radians
 
 from turtle import Turtle
 from pyturtle.shapes.shape import Shape
@@ -11,37 +7,46 @@ from pyturtle.shapes.point import Point2D
 
 
 class Arc(Shape):
-
     def __init__(
         self,
         num_coordinates=100,
-        #center: Point2D = Point2D(0, 0),
         center: Optional[Tuple[float, float]] = None,
         radius: float = 10,
-        theta_start: float = 0,
-        theta_range: float = ((2*np.pi)/8)
+        start_angle: float = 0,
+        end_angle: float = 45,
     ):
         super().__init__(num_coordinates)
         self.center = Point2D(0, 0) if center is None else Point2D(*center)
         self.radius = radius
-        self.theta_start = theta_start
-        self.theta_range = theta_range
+        self.start_angle = start_angle
+        self.end_angle = end_angle
 
-    def set_coordinates(self, rads: float=0) -> None:
-        """
-        Parameters
-        -------------
-        rads allow you to rotate the circle
-        """
-        self.coordinates = [Point2D(
-                self.center.x + self.radius * Decimal(cos(2 * pi * i / self.num_coordinates + rads)),
-                self.center.y + self.radius * Decimal(sin(2 * pi * i / self.num_coordinates + rads))
+    def set_coordinates(self):
+        """Generate coordinates for the arc based on the number of coordinates."""
+        arc_length = self.end_angle - self.start_angle
+        angle_increment = arc_length / (self.num_coordinates - 1)
+
+        self.coordinates = [
+            Point2D(
+                round(
+                    self.center.x
+                    + self.radius
+                    * cos(radians(self.start_angle + angle_increment * i)),
+                    2,
+                ),
+                round(
+                    self.center.y
+                    + self.radius
+                    * sin(radians(self.start_angle + angle_increment * i)),
+                    2,
+                ),
             )
             for i in range(self.num_coordinates)
         ]
 
     def get_slice():
         pass
+
     # def get_slice(self, step_num_one, step_num_two):
     #     """
 
@@ -52,11 +57,11 @@ class Arc(Shape):
     #         if t_in_arc_range:
     #             slice_coordinates[t] =
     #             for step, t in enumerate(self.coordinates.items())
-        #         arc_coordinates[t] = {
-        #             "x": self.coordinates[t]["x"],
-        #             "y": self.coordinates[t]["y"],
-        #         }
-        # return arc_coordinates
+    #         arc_coordinates[t] = {
+    #             "x": self.coordinates[t]["x"],
+    #             "y": self.coordinates[t]["y"],
+    #         }
+    # return arc_coordinates
 
     def get_random_slice(self):
         pass
@@ -85,11 +90,14 @@ class Arc(Shape):
         self.center.y = self.center.y + y_shift
         self.set_coordinates()
 
-    def rotate(self, rads: float) -> None:
+    def rotate(self, angle: float) -> None:
         """
-        rotates the circle so that the t-value mappings change
+        rotates the circle
         """
-        self.set_coordinates(rads=rads)
+        # positive angle rotates clockwise
+        self.start_angle -= angle
+        self.end_angle -= angle
+        self.set_coordinates()
 
     def set_center(self, x, y):
         self.center = Point2D(x, y)
@@ -97,9 +105,3 @@ class Arc(Shape):
     def set_radius(self, r):
         self.radius = r
         self.set_coordinates()
-
-
-
-
-
-

@@ -1,21 +1,18 @@
 import abc
 import os
 from typing import List
-from decimal import Decimal, getcontext
 from pyturtle.shapes.point import Point2D
 
-getcontext().prec = 2
 
 class Shape(metaclass=abc.ABCMeta):
-
     def __init__(self, num_coordinates):
         self.coordinates: List[Point2D] = []
         self.num_coordinates: int = num_coordinates
-    
+
     @abc.abstractmethod
     def set_coordinates(self):
         """This can be overridden by subclasses for specific behavior."""
-        #self.coordinates = []
+        # self.coordinates = []
         pass
 
     def get_coordinates(self):
@@ -29,9 +26,8 @@ class Shape(metaclass=abc.ABCMeta):
             turtle_instance.pendown()
             for coord in self.coordinates:
                 turtle_instance.goto(coord.x, coord.y)
-            #turtle_instance.goto(self.coordinates[0].x, self.coordinates[0].y)  # Close the shape
+            # turtle_instance.goto(self.coordinates[0].x, self.coordinates[0].y)  # Close the shape
         turtle_instance.penup()
-
 
     @abc.abstractmethod
     def translate_x(self, x_shift):
