@@ -49,3 +49,39 @@ def test_circle_translate_y():
     for i in range(len(coords)):
         assert coords[i].y != coords_shifted[i].y
         assert coords[i].x == coords_shifted[i].x
+
+
+def test_circle_rotate():
+    one = Circle()
+    one.set_coordinates()
+    coords = one.get_coordinates()
+    one.rotate(angle=45)
+    coords_rotated = one.get_coordinates()
+    assert len(coords) == len(coords_rotated)
+    for i in range(len(coords)):
+        assert coords[i].y != coords_rotated[i].y
+        assert coords[i].x != coords_rotated[i].x
+
+
+def test_circle_rotate_360():
+    one = Circle()
+    one.set_coordinates()
+    coords = one.get_coordinates()
+    one.rotate(angle=360)
+    coords_rotated = one.get_coordinates()
+    assert len(coords) == len(coords_rotated)
+    for i in range(len(coords)):
+        assert coords[i].y == coords_rotated[i].y
+        assert coords[i].x == coords_rotated[i].x
+
+
+def test_circle_rotate_0():
+    one = Circle()
+    one.set_coordinates()
+    coords = one.get_coordinates()
+    one.rotate(angle=0)
+    coords_rotated = one.get_coordinates()
+    assert len(coords) == len(coords_rotated)
+    for i in range(len(coords)):
+        assert coords[i].y == coords_rotated[i].y
+        assert coords[i].x == coords_rotated[i].x

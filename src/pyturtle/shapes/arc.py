@@ -90,11 +90,14 @@ class Arc(Shape):
         self.center.y = self.center.y + y_shift
         self.set_coordinates()
 
-    def rotate(self, rads: float) -> None:
+    def rotate(self, angle: float) -> None:
         """
-        rotates the circle so that the t-value mappings change
+        rotates the circle
         """
-        self.set_coordinates(rads=rads)
+        # positive angle rotates clockwise
+        self.start_angle -= angle
+        self.end_angle -= angle
+        self.set_coordinates()
 
     def set_center(self, x, y):
         self.center = Point2D(x, y)
