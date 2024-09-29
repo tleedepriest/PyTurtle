@@ -1,7 +1,7 @@
 from typing import Dict, Tuple
 from turtle import Turtle
 
-from math import sqrt
+from math import inf, sqrt
 from pyturtle.shapes.shape import Shape
 from pyturtle.shapes.point import Point2D
 
@@ -9,39 +9,69 @@ from pyturtle.shapes.point import Point2D
 class Line(Shape):
     def __init__(self, start, end, num_coordinates: int = 2):
         super().__init__(num_coordinates)
-        self.start = Point2D(*start)
-        self.end = Point2D(*end)
+        if not isinstance(start, Point2D):
+            self.start = Point2D(*start)
+        else:
+            self.start = start
+        if not isinstance(end, Point2D):
+            self.end = Point2D(*end)
+        else:
+            self.end = end
 
-    def get_slope(self):
+        self._set_properties()
+        self.set_coordinates()
+
+    def _set_properties(self):
+        self._set_slope()
+        self._set_intercept()
+        self._set_length()
+
+    def get_properties(self):
+        return [self.slope, self.intercept, self.length]
+
+    def _set_slope(self):
         """
         returns slope of a line
         """
-        return (self.end.y - self.start.y) / (self.end.x - self.start.x)
+        if not (self.end.x - self.start.x) == 0:
+            self.slope = (self.end.y - self.start.y) / (self.end.x - self.start.x)
+        else:
+            self.slope = inf
 
-    def get_intercept(self):
+    def get_slope(self):
+        return self.slope
+
+    def _set_intercept(self):
         """
         returns the intercept of the line
         y = mx+b
         """
-        return self.start.y - self.get_slope() * self.start.x
+        self.intercept = self.start.y - self.slope * self.start.x
+
+    def get_intercept(self):
+        return self.intercept
+
+    def _set_length(self):
+        """Calculate the length of the line segment."""
+        self.length = sqrt(
+            (self.end.x - self.start.x) ** 2 + (self.end.y - self.start.y) ** 2
+        )
 
     def get_length(self):
-        """Calculate the length of the line segment."""
-        return sqrt((self.end.x - self.start.x) ** 2 + (self.end.y - self.start.y) ** 2)
+        return self.length
 
     def set_coordinates(self):
         """Set the coordinates for the line based on num_coordinates."""
         if self.num_coordinates <= 2:
             self.coordinates = [self.start, self.end]  # At least one point
-            return
+        else:
+            step_x = (self.end.x - self.start.x) / (self.num_coordinates - 1)
+            step_y = (self.end.y - self.start.y) / (self.num_coordinates - 1)
 
-        step_x = (self.end.x - self.start.x) / (self.num_coordinates - 1)
-        step_y = (self.end.y - self.start.y) / (self.num_coordinates - 1)
-
-        self.coordinates = [
-            Point2D(self.start.x + step_x * i, self.start.y + step_y * i)
-            for i in range(self.num_coordinates)
-        ]
+            self.coordinates = [
+                Point2D(self.start.x + step_x * i, self.start.y + step_y * i)
+                for i in range(self.num_coordinates)
+            ]
 
     def change_end(self, end: Tuple[float, float]):
         """
@@ -49,6 +79,8 @@ class Line(Shape):
         keeping start point the same.
         """
         self.end = Point2D(*end)
+        self._set_properties()
+        self.set_coordinates()
 
     def swap_start_end(self):
         """
@@ -57,17 +89,21 @@ class Line(Shape):
         temp = self.end
         self.end = self.start
         self.start = temp
+        self._set_properties()
+        self.set_coordinates()
 
     def translate_x(self, x):
         self.start.x += x
         self.end.x += x
         # update coordinates
+        self._set_properties()
         self.set_coordinates()
 
     def translate_y(self, y):
         self.start.y += y
         self.end.y += y
         # update coordinates
+        self._set_properties()
         self.set_coordinates()
 
     def translate_xy(self, x, y):
@@ -75,6 +111,7 @@ class Line(Shape):
         self.start.y += y
         self.end.x += x
         self.start.x += y
+        self._set_properties()
         self.set_coordinates()
 
     def rotate(self):
