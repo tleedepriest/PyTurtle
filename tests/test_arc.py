@@ -27,8 +27,8 @@ def test_arc():
     arc = Arc()
     # Call the draw method
     assert arc.radius == 10
-    assert len(arc.coordinates) == 0
-    arc.set_coordinates()
+    # assert len(arc.coordinates) == 0
+    # arc.set_coordinates()
     assert len(arc.coordinates) == 100
     assert arc.center == Point2D(0, 0)
     assert arc.coordinates[0] == Point2D(10, 0)  # default radius 10

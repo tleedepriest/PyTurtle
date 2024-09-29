@@ -20,6 +20,7 @@ class Arc(Shape):
         self.radius = radius
         self.start_angle = start_angle
         self.end_angle = end_angle
+        self.set_coordinates()
 
     def set_coordinates(self):
         """Generate coordinates for the arc based on the number of coordinates."""
